@@ -65,6 +65,7 @@ Meemo is designed to:
 ---
 
 # Project Structure
+```
 meemo
 │
 ├── app
@@ -89,6 +90,8 @@ meemo
 │   └── progress.ts
 │
 └── types
+```
+
 ---
 
 ## Preview
