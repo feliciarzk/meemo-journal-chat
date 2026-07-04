@@ -134,23 +134,6 @@ export default function Home() {
             curhat, tapi sama diri sendiri
           </span>
 
-          <div className="flex items-center gap-3">
-            <Image
-              src="/meemo-logo-shape.png"
-              alt=""
-              width={44}
-              height={44}
-              priority
-            />
-            <Image
-              src="/meemo-logo-text.png"
-              alt="Meemo"
-              width={160}
-              height={44}
-              priority
-            />
-          </div>
-
           <p className="font-[family-name:var(--font-display)] text-2xl leading-snug text-white/90 sm:text-3xl">
             Nulis bebas.
             <br />
