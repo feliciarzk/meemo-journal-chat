@@ -5,6 +5,11 @@ Meemo transforms traditional journaling into a natural conversation. Instead of 
 
 ---
 
+## Live Demo
+https://meemo-journal-chat-a0p8xqmg2-feliciarzks-projects.vercel.app/
+
+---
+
 ## Features
 Chat-Based Journaling
 - Journal naturally through conversation.
