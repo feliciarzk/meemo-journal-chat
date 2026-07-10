@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meemo — Your Safe Place to Talk
 
-## Getting Started
+> A chat-style journaling application where every conversation becomes a personal journal.
+Meemo transforms traditional journaling into a natural conversation. Instead of staring at a blank page, users chat with **Meemo**, an AI companion that feels like a close friend. Every day's conversation is automatically saved as a journal entry, allowing users to reflect on their emotions over time.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Live Demo
+https://meemo-journal-chat-a0p8xqmg2-feliciarzks-projects.vercel.app/
+
+---
+
+## Features
+Chat-Based Journaling
+- Journal naturally through conversation.
+- One chat room is automatically created every day.
+- Previous conversations become read-only journals.
+
+Mood Reactions
+- React to every message with emotions.
+- Multiple moods can exist in one day.
+- Supports:
+  - 😄 Happy
+  - 🙂 Calm
+  - 😐 Neutral
+  - 😔 Sad
+  - 😭 Very Sad
+
+Journal History
+- Browse previous conversations from the sidebar.
+- Continue today's journal anytime.
+- View old conversations without modifying them.
+
+Growth Insight
+Analyze emotional patterns over time.
+Displays:
+- Total journal entries
+- Dominant mood
+- Weekly mood timeline
+- 30-day emotional trend
+
+Future Me
+Write letters to your future self.
+- Choose an unlock date
+- Letters remain locked until the selected day
+- Read them when the time arrives
+
+AI Companion
+Powered by Claude (Anthropic API).
+Meemo is designed to:
+- feel like texting a close friend
+- avoid robotic therapist-style responses
+- match the user's energy
+- keep replies short and natural
+
+---
+
+# Tech Stack
+| Category | Technology |
+|----------|------------|
+| Framework | Next.js 16 |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Backend | Supabase |
+| Database | PostgreSQL |
+| Authentication | Supabase Auth |
+| AI | Anthropic Claude |
+| Icons | Lucide React |
+
+---
+
+# Project Structure
+```
+meemo
+│
+├── app
+│   ├── api
+│   │   ├── progress
+│   │   └── reflect
+│   ├── chat
+│   ├── growth
+│   ├── future-me
+│   ├── login
+│   ├── register
+│   └── forgot-password
+│
+├── components
+│   ├── chat
+│   ├── auth
+│   └── ui
+│
+├── lib
+│   ├── services
+│   ├── supabase
+│   └── progress.ts
+│
+└── types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Preview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<img width="1517" height="782" alt="image" src="https://github.com/user-attachments/assets/bbf05395-88da-4a1c-b02e-f1765ae2e09b" />
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 👩‍💻 Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Felicia Rizka Putri**
+Built as a personal project to explore AI-assisted journaling with Next.js, Supabase, and Anthropic Claude.
