@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Menu } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getOrCreateConversation } from "@/lib/services/conversation";
 import { getMessages, sendMessage } from "@/lib/services/message";
@@ -33,6 +33,7 @@ export default function ChatRoom() {
   const [activeConversationId, setActiveConversationId] = useState<string | null>(null);
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadingMessages, setLoadingMessages] = useState(false);
 
@@ -49,8 +50,6 @@ export default function ChatRoom() {
 
         if (!user) return;
 
-        // room hari ini otomatis kebuat/keambil, ini yang bikin tombol
-        // "Start Today's Conversation" gak diperlukan lagi
         const conversation = await getOrCreateConversation(user.id);
 
         setTodayConversationId(conversation.id);
@@ -82,7 +81,6 @@ export default function ChatRoom() {
     });
   }, [messages]);
 
-  // Dipanggil pas user klik salah satu histori chat di sidebar
   async function handleSelectConversation(id: string) {
     if (id === activeConversationId) return;
 
@@ -162,21 +160,32 @@ export default function ChatRoom() {
         onSelectConversation={handleSelectConversation}
         collapsed={collapsed}
         onToggle={() => setCollapsed(!collapsed)}
+        mobileOpen={mobileSidebarOpen}
+        onMobileClose={() => setMobileSidebarOpen(false)}
       />
 
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col overflow-hidden">
         <header className="border-b border-white/10 bg-[#171321]/80 backdrop-blur-xl">
-          <div className="flex items-center justify-between px-8 py-5">
-            <div>
-              <h1 className="text-2xl font-bold">
-                {isViewingToday ? "Today's Journal" : "Journal"}
-              </h1>
+          <div className="flex items-center justify-between gap-3 px-4 py-4 sm:px-8 sm:py-5">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setMobileSidebarOpen(true)}
+                className="flex rounded-xl p-2 transition hover:bg-white/10 md:hidden"
+              >
+                <Menu size={22} />
+              </button>
 
-              <p className="mt-1 text-sm text-white/40">
-                {isViewingToday
-                  ? "Everything you write stays with you."
-                  : "Looking back at a previous entry."}
-              </p>
+              <div>
+                <h1 className="text-lg font-bold sm:text-2xl">
+                  {isViewingToday ? "Today's Journal" : "Journal"}
+                </h1>
+
+                <p className="mt-1 hidden text-sm text-white/40 sm:block">
+                  {isViewingToday
+                    ? "Everything you write stays with you."
+                    : "Looking back at a previous entry."}
+                </p>
+              </div>
             </div>
 
             <LogoutButton />
@@ -184,14 +193,14 @@ export default function ChatRoom() {
         </header>
 
         <main className="flex-1 overflow-y-auto">
-          <div className="mx-auto w-full max-w-5xl px-8 py-8">
+          <div className="mx-auto w-full max-w-5xl px-4 py-4 sm:px-8 sm:py-8">
             {loadingMessages ? (
               <div className="flex h-[70vh] items-center justify-center text-white/40">
                 Loading conversation...
               </div>
             ) : messages.length === 0 ? (
               <div className="flex h-[70vh] items-center justify-center">
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-10 text-center backdrop-blur-xl">
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl sm:p-10">
                   <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500">
                     <Sparkles size={28} />
                   </div>
@@ -217,9 +226,8 @@ export default function ChatRoom() {
           </div>
         </main>
 
-        {/* Input cuma buat nulis di hari ini — hari-hari lalu read-only */}
         {isViewingToday && (
-          <footer className="border-t border-white/10 bg-[#171321]/80 p-5 backdrop-blur-xl">
+          <footer className="border-t border-white/10 bg-[#171321]/80 p-3 backdrop-blur-xl sm:p-5">
             <div className="mx-auto max-w-5xl">
               <ChatInput onSend={handleSend} />
             </div>
